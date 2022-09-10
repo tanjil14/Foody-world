@@ -1,8 +1,8 @@
+import HomeContainer from "./HomeContainer";
 const MainContainer = () => {
   return (
-    <div>
-      <h1>Main Container</h1>
-      
+    <div className="w-full h-auto flex flex-col items-center justify-center">
+      <HomeContainer />
     </div>
   );
 };
