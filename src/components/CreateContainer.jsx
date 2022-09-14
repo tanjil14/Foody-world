@@ -13,11 +13,14 @@ import {
   MdFastfood,
   MdFoodBank,
 } from "react-icons/md";
+import { actionType } from "../context/reducer";
+import { useStateValue } from "../context/StateProvider";
 import { storage } from "../firebase/firebase.init";
 import { categories } from "../utils/data";
-import { saveItem } from "../utils/firebaseFunctions";
+import { getAllFoodItems, saveItem } from "../utils/firebaseFunctions";
 import Loader from "./Loader";
 const CreateContainer = () => {
+  const [{ foodItems }, dispatch] = useStateValue();
   const [title, setTitle] = useState("");
   const [calories, setCalories] = useState("");
   const [price, setPrice] = useState("");
@@ -118,6 +121,7 @@ const CreateContainer = () => {
         setIsLoading(false);
       }, 4000);
     }
+    fetchData();
   };
 
   const clearData = () => {
@@ -126,6 +130,14 @@ const CreateContainer = () => {
     setCalories("");
     setPrice("");
     setCategory(null);
+  };
+  const fetchData = async () => {
+    await getAllFoodItems().then((data) => {
+      dispatch({
+        type: actionType.SET_FOOD_ITEMS,
+        foodItems: data,
+      });
+    });
   };
   return (
     <div className="w-full min-h-screen flex items-center justify-center">
