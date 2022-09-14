@@ -11,8 +11,17 @@ body {
 html,
 body {
   scroll-behavior: smooth;
-  overflow-x: hidden
+  overflow-x: hidden;
 }
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .custom-input {
+    @apply w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor;
+  }
+  .custom-input-div {
+    @apply w-full py-2 border-b border-gray-300 flex items-center gap-2;
+  }
+}
