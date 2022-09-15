@@ -3,3 +3,4 @@ export { default as Header } from "./Header.jsx";
 export { default as HomeContainer } from "./HomeContainer.jsx";
 export { default as MainContainer } from "./MainContainer.jsx";
 export { default as Loader } from "./Loader.jsx";
+export { default as RowContainer } from "./RowContainer.jsx";

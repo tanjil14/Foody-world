@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { useStateValue } from "../context/StateProvider";
 import HomeContainer from "./HomeContainer";
+import RowContainer from "./RowContainer";
 const MainContainer = () => {
+  const [{ foodItems }, dispatch] = useStateValue();
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center">
       <HomeContainer />
@@ -12,20 +15,18 @@ const MainContainer = () => {
             Our fresh & healthy fruits
           </p>
           <div className="hidden md:flex gap-3 items-center">
-            <motion.div
-              whileTap={{ scale: 0.75 }}
-              className="w-8 h-8 bg-orange-300 hover:bg-orange-500 cursor-pointer transition-all duration-100 ease-in-out hover:shadow-lg flex items-center justify-center"
-            >
+            <motion.div whileTap={{ scale: 0.75 }} className="arrow-key">
               <MdChevronLeft className="text-lg text-white" />
             </motion.div>
-            <motion.div
-              whileTap={{ scale: 0.75 }}
-              className="w-8 h-8 bg-orange-300 hover:bg-orange-500 cursor-pointer transition-all duration-100 ease-in-out hover:shadow-lg flex items-center justify-center"
-            >
+            <motion.div whileTap={{ scale: 0.75 }} className="arrow-key">
               <MdChevronRight className="text-lg text-white" />
             </motion.div>
           </div>
         </div>
+        <RowContainer
+          flag={true}
+          data={foodItems?.filter((n) => n.category === "fruits")}
+        />
       </section>
     </div>
   );
