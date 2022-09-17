@@ -6,3 +6,4 @@ export { default as Loader } from "./Loader.jsx";
 export { default as RowContainer } from "./RowContainer.jsx";
 export { default as MenuContainer } from "./MenuContainer.jsx";
 export { default as CartContainer } from "./CartContainer.jsx";
+export { default as CartItem } from "./CartItem.jsx";
