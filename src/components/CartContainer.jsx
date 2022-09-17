@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { RiRefreshFill } from "react-icons/ri";
 import { actionType } from "../context/reducer";
@@ -19,12 +19,18 @@ const CartContainer = () => {
   };
   const clearCart = () => {
     dispatch({
-        type: actionType.SET_CARTITEMS,
-        cartItems: [],
-      });
-  
-      localStorage.setItem("cartItems", JSON.stringify([]));
+      type: actionType.SET_CARTITEMS,
+      cartItems: [],
+    });
+
+    localStorage.setItem("cartItems", JSON.stringify([]));
   };
+  useEffect(() => {
+    let totalPrice = cartItems.reduce(function (accumulator, item) {
+      return accumulator + item.qty * item.price;
+    }, 0);
+    setTot(totalPrice)
+  }, [tot,flag]);
   return (
     <motion.div
       initial={{ opacity: 0, x: 200 }}
@@ -53,7 +59,7 @@ const CartContainer = () => {
             {cartItems &&
               cartItems.length > 0 &&
               cartItems.map((item) => (
-                <CartItem key={item.id} item={item} flag={flag} />
+                <CartItem key={item.id} item={item} flag={flag} setFlag={setFlag}/>
               ))}
           </div>
           {/* cart total section */}
