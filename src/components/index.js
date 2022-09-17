@@ -5,3 +5,4 @@ export { default as MainContainer } from "./MainContainer.jsx";
 export { default as Loader } from "./Loader.jsx";
 export { default as RowContainer } from "./RowContainer.jsx";
 export { default as MenuContainer } from "./MenuContainer.jsx";
+export { default as CartContainer } from "./CartContainer.jsx";
